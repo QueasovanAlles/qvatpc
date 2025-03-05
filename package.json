@@ -5,9 +5,7 @@
   "main": "qva_tpc.js",
   "scripts": {
     "empty": "node qva_tpc.js empty_terminals",
-    "demo": "node qva_tpc.js demo_terminals",
-    "mylore": "node qva_tpc.js mylore_terminals",
-    "explore": "node qva_tpc.js explore_terminals explore_settings.json"
+    "demo": "node qva_tpc.js demo_terminals"
   },
   "keywords": [
     "terminal",
