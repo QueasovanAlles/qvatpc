@@ -31,3 +31,4 @@ G:\Qva\QvATPC\dotnet-demo\obj\Debug\net9.0\refint\dotnet-demo.dll
 G:\Qva\QvATPC\dotnet-demo\obj\Debug\net9.0\dotnet-demo.pdb
 G:\Qva\QvATPC\dotnet-demo\obj\Debug\net9.0\dotnet-demo.genruntimeconfig.cache
 G:\Qva\QvATPC\dotnet-demo\obj\Debug\net9.0\ref\dotnet-demo.dll
+G:\Qva\QvATPC\dotnet-demo\obj\Debug\net9.0\dotnet-demo.sourcelink.json

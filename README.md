@@ -12,6 +12,8 @@ QvATPC addresses a common pain point for modern developers who juggle multiple s
 - Colored, structured output for better readability
 - Simple command interface that feels natural
 
+![QvATPC Interface](./qvatpc-screen.png)
+
 ### Development scenarios where QvATPC shines
 - Full-stack development with multiple services
 - Microservices development and testing
@@ -24,10 +26,17 @@ While tools like PM2 handle process management and tmux offers terminal multiple
 
 
 ### Getting Started
-[Installation and usage instructions here]
+📖 Detailed guide: [ABOUTDEMO.md](ABOUTDEMO.md)  
+🎥 Quick demo: [Watch on YouTube](https://youtu.be/oTCihdmS0mU)
 
 ### Contributing
-[Contribution guidelines here]
 
-##License
-[License information here]
+Your ideas and contributions make QvATPC better! Feel free to:
+- Submit issues and suggestions
+- Fork the repository
+- Create pull requests
+- Share your experience
+
+### License
+
+MIT - Use it, modify it, share it! 
