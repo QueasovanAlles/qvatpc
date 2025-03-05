@@ -279,19 +279,9 @@ async function startTerminals() {
 		const handleOutput = (stream) => (data) => {
 				const output = data.toString();
 
-				// Skip output if it contains any filtered phrase
 				if (filterPhrases.some(phrase => output.includes(phrase))) {
 					return;
 				}
-
-				lastStdOut = new Date().getTime();
-				setTimeout(() => {
-					if (new Date().getTime() - lastStdOut > 1000 && new Date().getTime() - lastPrintList > 1000 ) {
-						//printHelp();
-						//printList();					
-						lastPrintList = new Date().getTime();
-					}					
-				}, 1000);
 
 				if (!terminal.running) {
 					const regex = new RegExp(terminal.runningConfirmation);
@@ -360,19 +350,19 @@ async function startTerminals() {
 			case 'start':
                 if (terminalArg) {
 					console.log(`${colors.warning} Trying to start child process ${terminalArg.name} on port ${terminalArg.port}${colors.reset}`);
-					start(terminalArg.name);
+					await start(terminalArg.name);
 				} else console.log(`${colors.error} Invalid terminal index`);
 				break;
 			case 'stop':
                 if (terminalArg) {
 					console.log(`${colors.warning} Trying to kill process for ${terminalArg.name} on port ${terminalArg.port}${colors.reset}`);
-					stop(terminalArg.name);
+					await stop(terminalArg.name);
 				} else console.log(`${colors.error} Invalid terminal index${colors.reset}`);
 				break;
 			case 'restart':
                 if (terminalArg) {
 					console.log(`${colors.warning} Trying to restart child process ${terminalArg.name} on port ${terminalArg.port}${colors.reset}`);
-					restart(terminalArg.name);
+					await restart(terminalArg.name);
 				} else console.log(`${colors.error} Invalid terminal index${colors.reset}`);
 				break;
 			case 'list':
