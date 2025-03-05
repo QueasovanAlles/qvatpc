@@ -2,6 +2,8 @@ const { spawn } = require('child_process');
 const util = require('util');
 const sleep = util.promisify(setTimeout);
 const readline = require('readline');
+const fs = require('fs');
+require('dotenv').config();
 
 async function startTerminals() {
 
@@ -10,7 +12,7 @@ async function startTerminals() {
 	 * Used for launching browser instances to view web applications
 	 * Override this path if using a different browser or Chrome installation location
 	 */	
-	const browserPath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+	const browserPath = process.env.BROWSER_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 
 
 	/**
@@ -52,9 +54,9 @@ async function startTerminals() {
 	 * Example: "empty": "node qva_tpc.js empty_terminals",
     "demo": "node qva_tpc.js demo_terminals", myconfig.js
 	 */
-    const configFile = process.argv[2] || 'empty.js';
-    let terminals = require(`./${configFile}`).terminals;
-
+   
+	const configFile = process.argv[2] || 'empty_terminals.json';
+	let terminals = JSON.parse(fs.readFileSync(`./${configFile}`, 'utf8'));
 
 
 	console.log(`${colors.title}
@@ -179,22 +181,18 @@ async function startTerminals() {
 	 * Usage:
 	 * await vacatePorts();  // Ensures clean slate before starting new processes
 	 */
-	function vacatePorts() {
-		return new Promise((resolve) => {
-			terminals.forEach((tab, tabId) => {
-				if (tab.name !== 'CMD') {
-					console.log(`${colors.highlight} vacate port : ${tab.name} ${tabId}/${terminals.length-1}`);
-					setTimeout(() => { stop(tab.name); }, tabId * 500);
-					setTimeout(() => {
-						let cmd = `netstat -ano | findstr : ${tab.port}`;
-						terminals[0].process?.stdin.write(`${cmd}` + '\n');
-						if (tabId === terminals.length - 1) resolve();
-					}, (tabId + terminals.length) * 500 + tabId * 100);
-				}
-			});
-		});
+	async function vacatePorts() {
+	    for (const [tabId, tab] of terminals.entries()) {
+			if (tab.name !== 'CMD') {
+			    console.log(`${colors.highlight} vacate port : ${tab.name} ${tabId}/${terminals.length-1}${colors.reset}`);
+			    await stop(tab.name); // Stop now returns a Promise (see below)
+			    await sleep(500); // Wait for process to fully terminate
+			    let cmd = `netstat -ano | findstr : ${tab.port}`;
+			    terminals[0].process?.stdin.write(`${cmd} \n`);
+			    await sleep(100); // Short delay for netstat output
+			}
+	    }
 	}
-
 	await vacatePorts();
 
 
@@ -319,25 +317,27 @@ async function startTerminals() {
 		terminal.process.stdin.write(`${terminal.cmd.replace('PORT', terminal.port)}\n`);
 	}
 
-    function stop(terminalName) {
+	async function stop(terminalName) {
 		const terminal = terminals.find(t => t.name === terminalName);
 		if (terminal) {
 			const port = terminal.port;
 			const commands = [
-				`$connection = Get-NetTCPConnection -LocalPort ${port}`,
-				`$processId = $connection.OwningProcess`,
-				`Stop-Process -Id $processId -Force`,
+			    `$connection = Get-NetTCPConnection -LocalPort ${port}`,
+			    `$processId = $connection.OwningProcess`,
+			    `Stop-Process -Id $processId -Force`,
 			];
 			terminal.running = false;
-			commands.forEach((cmd, cmdIdx) => {
-				setTimeout(() => {terminals[0].process?.stdin.write(`${cmd}` + '\n');},cmdIdx*500);
-			});
+			for (const cmd of commands) {
+			    terminals[0].process?.stdin.write(`${cmd}\n`);
+			    await sleep(500); // Wait for each command to process
+			}
 		}
 	}
 
-	function restart(terminalName) {
-		stop(terminalName);
-		setTimeout(() => start(terminalName), 3000);
+	async function restart(terminalName) {
+	    await stop(terminalName);
+	    await sleep(1000); // Adjustable wait after stop
+	    await start(terminalName); // Make start() return a Promise if needed
 	}
 
     const rl = readline.createInterface({
@@ -345,7 +345,7 @@ async function startTerminals() {
 		output: process.stdout
 	});
 
-	rl.on('line', (input) => {
+	rl.on('line', async (input) => {
 		const [command, ...args] = input.trim().split(' ');
 
 		let terminalArg = null;
@@ -415,25 +415,24 @@ async function startTerminals() {
 					}
 				} else console.log(`${colors.error} Invalid terminal index`);
 				break;
-			case 'quit' :
-				terminals.forEach((tab, tabId) => {
+			case 'quit':
+				for (const [tabId, tab] of terminals.entries()) {
 					if (tab.name !== 'CMD') {
-						console.log(`${colors.highlight} QUITING APP : ${tab.name} ${tabId}/${terminals.length-1}`);
-						setTimeout(()=>{stop(tab.name);},tabId*1000);
-					}	
-				});
-				setTimeout(()=>{
-					terminals.forEach((tab, tabId) => {
-						if (tabId !== 0) {
-							let cmd =  `netstat -ano | findstr : ${tab.port}`;
-							terminals[0].process?.stdin.write(`${cmd}` + '\n');
-						}
-					});
-					setTimeout(()=>{console.log(`${colors.command} QUITED!${colors.reset}`);process.exit(0);},1000);
-				},10000);
-				
+					    console.log(`${colors.highlight} QUITING APP : ${tab.name} ${tabId}/${terminals.length-1}${colors.reset}`);
+					    await stop(tab.name);
+					    await sleep(500);
+					}
+				}
+				for (const [tabId, tab] of terminals.entries()) {
+					if (tabId !== 0) {
+					    let cmd = `netstat -ano | findstr : ${tab.port}`;
+					    terminals[0].process?.stdin.write(`${cmd}\n`);
+					    await sleep(100);
+					}
+				}
+				console.log(`${colors.command} QUITED!${colors.reset}`);
+				process.exit(0);
 				break;
-
 			case 'help':
 				printHelp();
 				break;

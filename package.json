@@ -4,8 +4,8 @@
   "description": "Terminal Process Controller for developers managing multiple services",
   "main": "qva_tpc.js",
   "scripts": {
-    "empty": "node qva_tpc.js empty_terminals",
-    "demo": "node qva_tpc.js demo_terminals"
+    "empty": "node qva_tpc.js empty_terminals.json",
+    "demo": "node qva_tpc.js demo_terminals.json"
   },
   "keywords": [
     "terminal",

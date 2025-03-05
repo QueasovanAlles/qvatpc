@@ -1,0 +1,13 @@
+[
+    {
+		"name": "CMD",
+		"path": "C:\\",
+		"domain": "",
+		"port": 0,
+		"cmd": "echo QvATPC_terminal",
+		"runningConfirmation": "QvATPC_terminal",
+		"output": true,
+		"running": false,
+		"process": null
+    }
+]

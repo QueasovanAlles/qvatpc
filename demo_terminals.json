@@ -1,0 +1,80 @@
+[
+    {
+		"name": "CMD",
+		"path": "C:\\",
+		"domain": "",
+		"port": 0,
+		"cmd": "echo QvATPC_terminal",
+		"runningConfirmation": "QvATPC_terminal",
+		"output": true,
+		"running": false,
+		"process": null
+    },
+    {
+        "name": "DotNet",
+        "path": "./dotnet-demo",
+        "domain": "http://localhost",
+        "port": 5256,
+        "cmd": "dotnet run",
+        "output": true,
+        "running": false,
+        "runningConfirmation": "Now listening on: http://localhost:5256",
+        "process": null
+    },
+    {
+        "name": "Node",
+        "path": "./node-server-demo",
+        "domain": "http://localhost",
+        "port": 3000,
+        "cmd": "npm run dev",
+        "output": true,
+        "running": false,
+        "runningConfirmation": "Server running at http://localhost:3000",
+        "process": null
+    },
+	{
+        "name": "Python",
+        "path": "./python-demo",
+        "domain": "http://localhost",
+        "port": 5000,
+        "cmd": "python app.py",
+        "output": true,
+        "running": false,
+        "runningConfirmation": "Running on http://localhost:5000",
+        "process": null
+    },
+	{
+        "name": "Angular",
+        "path": "./angular-demo",
+        "domain": "http://localhost",
+        "port": 4200,
+        "cmd": "ng serve --port 4200",
+        "output": true,
+        "running": false,
+        "runningConfirmation": "listening on localhost:4200",
+        "process": null
+    },
+    {
+        "name": "Vue",
+        "path": "./vue-demo",
+        "domain": "http://localhost",
+        "port": 5173,
+        "cmd": "npm run dev",
+        "output": true,
+        "running": false,
+        "runningConfirmation": "ready in",
+        "process": null
+    },
+    {
+        "name": "React",
+        "path": "./react-demo",
+        "domain": "http://localhost",
+        "port": 5174,
+        "cmd": "npm run dev",
+        "output": true,
+        "running": false,
+        "runningConfirmation": "ready in",
+        "process": null
+    }
+ 
+]
