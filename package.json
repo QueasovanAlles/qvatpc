@@ -1,0 +1,31 @@
+{
+  "name": "qvatpc",
+  "version": "1.0.0",
+  "description": "Terminal Process Controller for developers managing multiple services",
+  "main": "qva_tpc.js",
+  "scripts": {
+    "empty": "node qva_tpc.js empty_terminals",
+    "demo": "node qva_tpc.js demo_terminals",
+    "mylore": "node qva_tpc.js mylore_terminals",
+    "explore": "node qva_tpc.js explore_terminals explore_settings.json"
+  },
+  "keywords": [
+    "terminal",
+    "process",
+    "controller",
+    "development",
+    "microservices",
+    "cli"
+  ],
+  "author": "Queaso van Alles",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "glob": "^10.3.10",
+    "readline": "^1.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/queasovanalles/qvatpc"
+  }
+}

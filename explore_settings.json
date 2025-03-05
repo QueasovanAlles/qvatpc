@@ -1,0 +1,60 @@
+ {
+    "scanPaths": [
+        "G:\\QvA\\*"
+    ],
+	"supportedTypes": [
+		{
+			"name": "Angular CLI",
+			"include": true,
+			"detect": ["angular.json", "package.json"],
+			"command": "ng serve",
+			"portRegex": "port\\s*(\\d+)",
+			"runConfirm": "listening on"
+		},
+		{
+			"name": "Node.js Server",
+			"include": true,
+			"detect": ["package.json", "server.js"],
+			"command": "node server",
+			"portRegex": "port\\s*(\\d+)",
+			"runConfirm": "listening on"
+		},
+		{
+			"name": ".NET Core",
+			"include": true,
+			"detect": ["*.csproj", "Program.cs"],
+			"command": "dotnet run",
+			"portRegex": "https?://.*:(\\d+)",
+			"runConfirm": "Application started"
+		},
+		{
+			"name": "Python Flask",
+			"include": true,
+			"detect": ["requirements.txt", "app.py"],
+			"command": "python app.py",
+			"portRegex": "Running on.*:(\\d+)",
+			"runConfirm": "Running on"
+		},
+		{
+			"name": "React Dev",
+			"include": true,
+			"detect": ["package.json", "src/App.js"],
+			"command": "npm start",
+			"portRegex": "localhost:(\\d+)",
+			"runConfirm": "webpack compiled"
+		},
+		{
+			"name": "Vue CLI",
+			"include": true,
+			"detect": ["vue.config.js", "package.json"],
+			"command": "npm run serve",
+			"portRegex": "localhost:(\\d+)",
+			"runConfirm": "ready in"
+		}
+	],
+    "exclude": [
+        "node_modules",
+        "dist",
+        ".git"
+    ]    
+}
