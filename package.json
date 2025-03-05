@@ -1,5 +1,5 @@
 {
-  "name": "qvatpc",
+  "name": "qvatpc",   
   "version": "1.0.0",
   "description": "Terminal Process Controller for developers managing multiple services",
   "main": "qva_tpc.js",
