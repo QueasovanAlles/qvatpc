@@ -12,7 +12,7 @@ QvATPC addresses a common pain point for modern developers who juggle multiple s
 - Colored, structured output for better readability
 - Simple command interface that feels natural
 
-./qvatpc-screen.png
+./qvatpc.png
 
 ### Development scenarios where QvATPC shines
 - Full-stack development with multiple services
