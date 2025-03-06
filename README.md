@@ -34,12 +34,28 @@ QvATPC is an open-source, Node.js-powered CLI tool that streamlines managing mul
 ## How It Stands Out
 QvATPC blends terminal control with process management in a Node.js-first package. It’s simpler than tmux (no panes) and lighter than PM2 (no daemon), focusing on dev-stage flexibility with port cleanup and browser integration.
 
-### Get Started
+### Get Started using the demo
 - Clone: git clone https://github.com/QueasovanAlles/qvatpc
 - Install: npm install
 - Install all demo services : install dependencies in demo folder
 - Run: npm run demo (uses demo_terminals.json)
-- Predefine your Dev envirenmont using empty_terminals
+- Predefine your Dev environment using empty_terminals
+
+### Practical example : I'm using QvATPC for (QvA) MyLoRe project:
+
+\QvA			// projects folder
+\QvA\MyLoRe\		// project using services that need to run : eg. a webserver
+\QvA\QvaTPC\ 		// clone of this repo (all demo related content can be removed)
+
+In a terminal goto the projects folder and enter this command :
+\QvA> node ./qvatpc/qva_tpc.js ./MyLoRe/mylore_terminals.json
+
+generalised : 
+
+\projects> node ./qvatpc/qva_tpc.js ./a_project/a_project_terminals.json
+
+for the format of content in "a_project_terminals.json" check "demo_terminals.json" and startup a new list of terminal in a project from "empty_terminals.json"
+
 
 ### QvATPC CLI Commands samples :
 - list (view status)

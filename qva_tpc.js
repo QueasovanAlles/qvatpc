@@ -275,33 +275,6 @@ async function startTerminals() {
 				shell: true,
 				windowsHide: true
 			});
- 
-		const handleOutput = (stream) => (data) => {
-				const output = data.toString();
-
-				if (filterPhrases.some(phrase => output.includes(phrase))) {
-					return;
-				}
-
-				if (!terminal.running) {
-					const regex = new RegExp(terminal.runningConfirmation);
-					const match = output.match(regex);
-					if (match) {
-						terminal.running = true;
-						console.log(`${colors.success}${terminal.name} confirmed running${colors.reset}`);
-					}
-				}
-
-				if (terminal.output && output.length > 0) {
-					if (terminal.name==='CMD')
-						console.log(`${colors.highlight}${terminal.name} ${colors.reset}Output: ${output}`);
-					else
-						console.log(`${colors.warning}${terminal.name} ${colors.reset}Output: ${output}`);
-				} 
-			};
-
-		terminal.process.stdout.on('data', handleOutput('stdout'));
-		terminal.process.stderr.on('data', handleOutput('stderr'));
 		
 	    terminal.process.stdin.write(`cd ${terminal.path}\n`);
 		terminal.process.stdin.write(`${terminal.cmd.replace('PORT', terminal.port)}\n`);
