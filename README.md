@@ -41,21 +41,27 @@ QvATPC blends terminal control with process management in a Node.js-first packag
 - Run: npm run demo (uses demo_terminals.json)
 - Predefine your Dev environment using empty_terminals
 
-### Practical example : I'm using QvATPC for (QvA) MyLoRe project:
+### Practical example: Using QvATPC for "MyLoRe" project
 
-\QvA			// projects folder
-\QvA\MyLoRe\		// project using services that need to run : eg. a webserver
-\QvA\QvaTPC\ 		// clone of this repo (all demo related content can be removed)
+Directory structure:
+```
+QvA/                    # projects folder
+├── MyLoRe/            # project using services (eg. webserver)
+└── QvaTPC/            # clone of this repo (demo content optional)
+```
 
-In a terminal goto the projects folder and enter this command :
-\QvA> node ./qvatpc/qva_tpc.js ./MyLoRe/mylore_terminals.json
+Launch command from projects folder:
+```bash
+# For MyLoRe project
+node ./qvatpc/qva_tpc.js ./MyLoRe/mylore_terminals.json
 
-generalised : 
+# Generic format
+node ./qvatpc/qva_tpc.js ./a_project/a_project_terminals.json
+```
 
-\projects> node ./qvatpc/qva_tpc.js ./a_project/a_project_terminals.json
-
-for the format of content in "a_project_terminals.json" check "demo_terminals.json" and startup a new list of terminal in a project from "empty_terminals.json"
-
+Terminal configuration:
+- Use `demo_terminals.json` as reference
+- Start new projects with `empty_terminals.json` template
 
 ### QvATPC CLI Commands samples :
 - list (view status)
