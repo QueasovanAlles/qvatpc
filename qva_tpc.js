@@ -235,8 +235,8 @@ async function startTerminals() {
 	 * the terminal management interface, making the system more
 	 * user-friendly and efficient.
 	 */
-	function formatColumn(text, desiredWidth = 14) {
-		const tabSize = 4;
+	function formatColumn(text, desiredWidth = 20) {
+		const tabSize = 8;
 		const textLength = text.length;
 		const neededTabs = Math.ceil((desiredWidth - textLength) / tabSize);
 		return text + '\t'.repeat(neededTabs);
