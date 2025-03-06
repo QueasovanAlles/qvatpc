@@ -63,12 +63,6 @@ Terminal configuration:
 - Use `demo_terminals.json` as reference
 - Start new projects with `empty_terminals.json` template
 
-### QvATPC CLI Commands samples :
-- list (view status)
-- start 1 (launch DotNet)
-- browse 2 (open Node in Chrome)
-- quit (kill all and exit)
-
 ### Current State
 QvATPC (v1.0.0, March 2025) by Queaso van Alles is a solid dev tool with a JSON-configurable future. It’s functional for small projects, with room for polish (e.g., error handling, docs). Contributions welcome!
 
